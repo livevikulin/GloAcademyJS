@@ -117,3 +117,5 @@ let getStatusIncome = function() {
 	}
 }
 console.log(getStatusIncome());
+console.log(budgetMonth);
+console.log(Math.ceil(mission));
