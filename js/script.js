@@ -95,3 +95,25 @@ function getTargetMonth() {
 	console.log('За ' + Math.ceil(mission) + ' месяцев будет достигнута ваша цель!');
 }
 getTargetMonth();
+
+console.clear();
+
+let showTypeOf = function(data) {
+	console.log(data, typeof(data));
+}
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
+
+let getStatusIncome = function() {
+	if (budgetDay > 800) {
+		return ('Высокий уровень дохода');
+	} else if (budgetDay >= 300 && budgetDay <= 800) {
+		return ('Средний уровень дохода');
+	} else if (budgetDay >= 0 && budgetDay <= 300) {
+		return ('Низкий уровень дохода');
+	} else {
+		return ('Что то пошло не так');
+	}
+}
+console.log(getStatusIncome());
