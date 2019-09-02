@@ -17,13 +17,45 @@ let appData = {
 	expenses: {},
 	addExpenses: [],
 	deposit: false,
+	percentDeposit: 0,
+	moneyDeposit: 0,
 	mission: 500000,
 	period: 3,
 	expensesMonth: 0,
 	asking: function() {
-		let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую: ');
+		
+		if (confirm('Есть ли у вас дополнительный заработок?')) {
+			let itemIncome;
+			let cashIncome;
+			do {
+				itemIncome = prompt('Какой у вас дополнительный заработок?', 'Фриланс');
+			}
+			while (itemIncome === '' || itemIncome === 0 || itemIncome === false)
+			do {
+				cashIncome = +prompt('Сколько вы с этого получаете?', 20000);
+			}
+			while (isNaN(cashIncome) || cashIncome === '' || cashIncome === 0 || cashIncome === false)
+			appData.income[itemIncome] = cashIncome;
+		}
+		
+		let addExpenses;
+		do {
+			addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую: ');
+		}
+		while (!isNaN(addExpenses) || addExpenses === '' || addExpenses === 0 || addExpenses === false || addExpenses === NaN)
 		appData.addExpenses = addExpenses.split();
 		appData.deposit = confirm('Есть ли у вас депозит в банке?');
+		if (appData.deposit) {
+			do {
+				appData.percentDeposit = +prompt('Какой годовой процент?', 10);
+			}
+			while (isNaN(appData.percentDeposit) || appData.percentDeposit === '' || appData.percentDeposit === 0 || appData.percentDeposit === false)
+			
+			do {
+				appData.moneyDeposit = +prompt('Сколько денег вы положили в банк?', 50000);
+			}
+			while (isNaN(appData.moneyDeposit) || appData.moneyDeposit === '' || appData.moneyDeposit === 0 || appData.moneyDeposit === false)
+		}
 		for(let i = 0; i < 2; i++) {
 			let itemExpenses = prompt('Какие обязательные ежемесячные расходы у вас есть?', 'Еда');
 			let cashExpenses;
@@ -57,6 +89,9 @@ let appData = {
 		} else if (appData.budgetDay < 0) {
 			return ('Что то пошло не так');
 		}
+	},
+	calcSaveMoney: function() {
+		return appData.budgetMonth * appData.period;
 	}
 };
 
@@ -77,5 +112,4 @@ console.log(appData.getStatusIncome());
 for (let key in appData) {
 	console.log('Наша программа включает в себя данные: ' + key + ' - ' +appData[key]);
 };
-
 
