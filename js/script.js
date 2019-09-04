@@ -125,7 +125,7 @@ let myList = document.getElementsByTagName('ul');
 let myItem = document.getElementsByTagName('li');
 
 
-console.log(myList);
+console.log(myList[5].children);
 console.log(myItem);
 
 
