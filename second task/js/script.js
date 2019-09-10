@@ -1,4 +1,5 @@
 let $start = document.getElementById('start');
+let $cancel = document.getElementById('cancel');
 let firstPlus = document.getElementsByTagName('button')[0];
 let secondPlus = document.getElementsByTagName('button')[1];
 let $check = document.querySelector('#deposit-check');
@@ -19,6 +20,8 @@ let targetSum = document.querySelector('.target-amount');
 let periodRange = document.querySelector('.period-select');
 let incomeItem = document.querySelectorAll('.income-items');
 let periodAmount = document.querySelector('.period-amount');
+let data = document.querySelector('.data');
+let inputs = data.querySelectorAll('input');
 let rangeValue = function(){
 	periodAmount.innerHTML = periodRange.value;
 };
@@ -46,6 +49,12 @@ let appData = {
 			return;
 		}
 		
+		$start.style.display = 'none';
+		$cancel.style.display = 'block';
+		inputs.forEach(function(item) {
+			item.setAttribute('disabled', 'disabled');
+		});
+		
 		appData.budget = +budget.value;
 		
 		appData.getExpenses();
@@ -72,7 +81,6 @@ let appData = {
 			period.value = appData.calcSaveMoney();
 			
 		});
-		
 		
 	},
 	
