@@ -25,7 +25,6 @@ let inputs = data.querySelectorAll('input');
 let depositBank = document.querySelector('.deposit-bank');
 let depositAmount = document.querySelector('.deposit-amount');
 let depositPercent = document.querySelector('.deposit-percent');
-
 let rangeValue = function(){
 	periodAmount.innerHTML = periodRange.value;
 };
@@ -302,11 +301,8 @@ AppData.prototype.eventListeners = function ()  {
 		}
 
 	});
-
 };
 
 const appData = new AppData();
 console.log(appData);
 appData.eventListeners();
-
-
